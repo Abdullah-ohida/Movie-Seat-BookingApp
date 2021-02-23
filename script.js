@@ -6,6 +6,29 @@ const movieSelect = document.getElementById("movie");
 
 let ticketPrice = +movieSelect.value;
 
+// Recall data from data storage and display ui
+const populateUI = ()=>{
+    const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
+
+    if(selectedSeats != null && selectedSeats.length > 0){
+        seats.forEach((seat, index) => {
+            if(selectedSeats.indexOf(index) > - 1){
+                seat.classList.add("selected");
+            }
+        })
+    }
+
+    const selectedMovieIndex = localStorage.getItem("selectedMovieIndex");
+    console.log(selectedMovieIndex);
+
+    if(selectedMovieIndex !== null){
+        movieSelect.selectedIndex = selectedMovieIndex;
+    }
+    
+}
+
+populateUI();
+
 // Check if className exist in class
 const checkElementClassName = (className, event)=> event.target.classList.contains(className);
 
@@ -35,7 +58,8 @@ const setMovieData = (movieIndex, moviePrice)=>{
 // Movie Select event
 movieSelect.addEventListener("change", e => {
     ticketPrice = +e.target.value;
-    setMovieData(e.target.selectIndex, e.target.value);
+    console.log(e.target.value)
+    setMovieData(e.target.selectedIndex, e.target.value);
     updateSelectedCount();
 })
 
@@ -46,5 +70,9 @@ container.addEventListener('click', e =>{
         e.target.classList.toggle("selected");
         updateSelectedCount();
     }
-})
+});
+
+// Initial count and total set
+updateSelectedCount();
+
 
