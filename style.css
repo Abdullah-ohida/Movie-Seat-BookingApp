@@ -17,10 +17,11 @@ body{
 }
 
 h1, h1 span{
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
-    line-height: 4;
+    margin-bottom: 1rem;
     letter-spacing: 0.4rem;
+    text-align: center;
 }
 
 h1 span{
